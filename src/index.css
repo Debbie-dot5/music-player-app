@@ -2,11 +2,25 @@
 @tailwind components;
 @tailwind utilities;
 
-
-body{
+*{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    background-color: rgb(40, 0, 71);
-    /* background-color: rgb(40, 0, 71); */
 }
+
+
+
+body{
+    background-color: rgb(40, 0, 71);
+    font-family: "Montserrat", sans-serif;
+}
+
+
+.no-scrollbar::-webkit-scrollbar{
+    display: none;
+   }
+   
+   .no-scrollbar{
+     -ms-overflow-style:none;
+     scrollbar-width: none;
+   }
