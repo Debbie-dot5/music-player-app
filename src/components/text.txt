@@ -1,0 +1,4 @@
+ bg-[url('/first-circle.svg'),_url('/second-circle.svg')] 
+    bg-no-repeat 
+    bg-[top_right,_bottom_left] 
+    bg-cover
