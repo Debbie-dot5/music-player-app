@@ -2,3 +2,159 @@
     bg-no-repeat 
     bg-[top_right,_bottom_left] 
     bg-cover
+
+
+
+
+
+    
+  // const [songs, setSongs] = useState([]);
+  // const [currentSong, setCurrentSong] = useState(null);
+  // const [isPlaying, setIsPlaying] = useState(false); 
+  // const audioRef = React.useRef(null);
+
+  
+  //  useEffect(() => {
+  //   if (audioRef.current) {
+  //     audioRef.current.load(); 
+  //     if (isPlaying) {
+  //       audioRef.current.play(); 
+  //     }
+  //   }
+  // }, [currentSong, isPlaying])
+
+
+ 
+//   useEffect(() => {
+
+//     const fetchedSongs = async () => {
+//         const options = {
+//             method: 'GET',
+//             headers: {
+//               'x-rapidapi-key': '5d2c3d9542mshac7a9dfd7c6d9dap1dffdcjsn5318b703922f',
+//               'x-rapidapi-host': 'spotify23.p.rapidapi.com'
+//             },
+//           };
+
+//         try{
+//             const response = await fetch(
+//                 "https://spotify23.p.rapidapi.com/genre_view/?id=0JQ5DAqbMKFEC4WFtoNRpw&content_limit=10&limit=20",
+//                 options
+//               );
+
+
+//               const data = await response.json();
+
+//               const formattedSongs = data.content.items.map((item, index) => ({
+//                 id:index,
+//                 title: item.name,
+//                 url: item.previewUrl || "",
+
+//               }));
+
+//               setSongs(formattedSongs);
+//               console.log(formattedSongs);
+              
+//         } catch (error) {
+//             console.error("Error fetching songs:", error);
+//         }
+//     }
+
+//     fetchedSongs();
+// }, [])
+
+  // const handlePlay = ()=>{
+  //   audioRef.current.play()
+  //   setIsPlaying(true)
+    
+  // }
+  
+  // const handlePause = ()=>{
+  //   audioRef.current.pause();
+  //   setIsPlaying(false)
+  // }
+
+  // console.log(isPlaying)
+
+  // const handlePlayAndPause = () => {
+  //   if (isPlaying) {
+  //     handlePause()
+  //   } else {
+  //    handlePlay()
+  //   }
+  // };
+
+
+
+// useEffect(() => {
+// if(currentSong){
+//   setIsPlaying(true)
+
+//   audioRef.current.load()
+//   audioRef.current.play();
+// };
+// },[currentSong]);
+
+
+
+ const handlePlay = async ()=> {
+
+        try{
+            await audioRef.current.play()
+            setIsPlaying(true)
+        } catch (error) {
+            console.log(" Error playing audio:", error);
+            if (error.name === 'NotAllowedError') {
+                alert("Autoplay is blocked. Please click the play button");
+            }
+        }     
+        
+      }
+
+
+      'https://spotify23.p.rapidapi.com/tracks/?ids=4WNcduiCmDNfmTEz7JvmLv', options
+
+
+
+    const options = {
+                method: 'GET',
+                headers: {
+                  'x-rapidapi-key': '5d2c3d9542mshac7a9dfd7c6d9dap1dffdcjsn5318b703922f',
+                  'x-rapidapi-host': 'spotify23.p.rapidapi.com'
+                },
+              };
+      "https://spotify23.p.rapidapi.com/genre_view/?id=0JQ5DAqbMKFEC4WFtoNRpw&content_limit=10&limit=20",
+                    options
+
+
+'https://spotify23.p.rapidapi.com/playlist/?id=37i9dQZF1DX4Wsb4d7NKfP
+
+
+        const formattedSongs = data.content.items.map((item, index) => ({
+                    id:index,
+                    title: item.name,
+                    artist: item.artistName || "Unknown Artist",
+                    url: item.previewUrl || "",
+
+                  }));
+
+
+                   {/* <div className='flex-shrink-0 w-[140px]'>
+       <img className='py-4' src='/img2.svg'/>
+       <h3 className='font-bold text-white text-base'>URBAN MOOD</h3>
+       <p className='text-gray-300 text-sm'>Hip-Hop</p>
+      </div>
+
+      <div className='flex-shrink-0 w-[140px]'>
+       <img className='py-4' src='/img3.svg'/>
+       <h3 className='font-bold text-white text-base'>SUMMER BLUES</h3>
+       <p className='text-gray-300 text-sm'>Country</p>
+      </div> */}
+
+
+       {/* <button className="text-white" onClick={handlePause}>
+          Pause
+           </button>
+          <button className="text-white" onClick={handlePlay}>
+         Play
+          </button> */}

@@ -11,6 +11,7 @@ export default {
         deepBluePurple: 'rgb(38, 0, 121)',
         deepPurpleRed: 'rgb(75, 1, 96)',
         lightPurple: 'rgb(81,51,152)',
+        charcoalGray: 'rgb(68,66,65)',
       },
     },
   },

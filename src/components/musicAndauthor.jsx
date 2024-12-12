@@ -59,6 +59,7 @@ const MusicandAuthor = () => {
            </div>
         ))}
       </div>
+      
     </div>
   )
 }
