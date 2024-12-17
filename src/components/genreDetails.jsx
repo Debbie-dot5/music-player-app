@@ -1,64 +1,50 @@
 import Header2 from "./header2"
-import { useParams } from "react-router-dom"
 import { SpotifyContext } from "../context/spotifyContext";
 import { useContext } from "react";
+import { Link, useParams } from "react-router-dom";
+// import PlayPlay from "./PlayPlay";
 
 
-// const artistLists = [
-//     {
-//         img: '/artist1.svg',
-//         songTitle: "BORN TO DIE",
-//         artist: "Lana Del Rey",
-//       },
-//       {
-//         img: '/artist2.svg',
-//         songTitle: "JOLENE",
-//         artist: "Dolly Parton",
-//       },
-//       {
-//         img: '/artist3.svg',
-//         songTitle: "WRECKING BALL",
-//         artist: "Miley Cyrus",
-//       },
-//       {
-//         img: '/artist4.svg',
-//         songTitle: "BUTTER",
-//         artist: "BTS",
-//       },
-//       {
-//         img: '/artist5.svg',
-//         songTitle: "BABY",
-//         artist: "Justin Bieber",
-//       },
-//   ]
+
 
 
 const GenreDetails = () => {
   const { songs } = useContext(SpotifyContext);
   const { id } = useParams();
 
+  
   const genre = songs.find((g) => g.id === id);
-
+  
+//  console.log(songs)
+//  console.log(genre)
+  
   if (!genre) {
-    return <div className="text-white">Genre not found</div>;
+    return <div className="text-white">
+      
+      <p>
+      {/* <PlayPlay  data={songs} /> */}
+
+      </p>
+
+      Genre not found</div>;
   }
 
 
   return (
   <div className="w-full relative h-auto">
-      
-      <img className="m-auto w-full" src="/clearmind.svg" />
+            {console.log(genre.name)}
+
+      <img className="m-auto w-full h-[300px] bg-cover bg-center rounded-tl-2xl rounded-tr-2xl" src={genre.image} />
       <div className="px-6 pt-4">
       
             
-
 
             <div className="absolute top-0 left-0 text-white w-full px-6 pt-4 ">
               
               <Header2 />
                
 
-                <div className="pt-40">
+                <div className=" text-white pt-40">
                     <h1 className="text-[30px] font-bold">{genre.name}</h1>
                     <div className="flex gap-2">
                         <p className="text-base text-gray-300">Instrumental</p><span className="font-bold text-gray-300">.</span>
@@ -76,22 +62,40 @@ const GenreDetails = () => {
 
 
     <div className="pt-6">
-                {genre.map((artistList, index) => (
-            <div key={index} className="flex justify-between items-center ">
-                <div className="flex gap-6">
-                   <img className="pb-4" src={artistList.img}/>
-                    <div className="pt-2">
+                {songs.map((artistList, index) => (
+                 
+                  
+            <div  key={index} className="flex justify-between items-center ">
+               <Link to={`/playerPage/${genre.id}`}>
+
+                <div  className="flex gap-6">
+                      
+                      <img
+                          className="pb-4 w-[100px] rounded-xl cursor-pointer"
+                          src={artistList.image}
+                          alt={artistList.name}
+                      />
+
+                    <div className="pt-2 max-w-[180px] overflow-x-hidden">
                         <h2 className="text-lg font-semibold text-white">{artistList.name}</h2>
-                        <p  className="text-sm text-gray-300">{artistList.name}</p>
+                        <p  className="text-xs text-gray-300">{artistList.description}</p>
                    </div>
                    
                 </div>
 
-                <div className="flex justify-center gap-1 ">
-                    <button><img src="/dot.svg"/></button>
-                    <button><img src="/dot.svg"/></button>
-                </div>
+              </Link>
+                
+
+               
+
+{/* shows your   skill and creativity as a developer */}
+              <button className="flex justify-center gap-1 cursor-pointer ">
+                <div className="h-[5px] w-[5px] bg-white rounded"></div>
+                <div className="h-[5px] w-[5px] bg-white rounded"></div>
+              </button>
            </div>
+                  
+                 
         ))}
     </div>
 

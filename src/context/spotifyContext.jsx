@@ -1,85 +1,133 @@
-import React, { createContext, useEffect,  useState } from "react";
+import React,  { createContext, useEffect,  useState } from "react";
 
 
 export const SpotifyContext = createContext();
 
 export const SpotifyProvider = ({ children  }) => {
 
+    // complete  data
     const [songs, setSongs] = useState([]);
+    const [currentSong, setCurrentSong] = useState(null);
+    const [isPlaying, setIsPlaying] = useState(false); 
+    const audioRef = React.useRef(null);
+
+
+
+
    
 
 
 
-    useEffect(() => {
+// first data fetched 
+useEffect(() => {
+  const fetchedAlbum = async () => {
+        const options = {
+          method: 'GET',
+          headers: {
+            'x-rapidapi-key': '98f6c97830msh9c98c82fa2914e2p18e135jsn7806596509bf',
+            'x-rapidapi-host': 'spotify23.p.rapidapi.com'
+          }
+        };
 
-        const fetchedSongs = async () => {
-            const options = {
-                method: 'GET',
-                headers: {
-                  'x-rapidapi-key': '5d2c3d9542mshac7a9dfd7c6d9dap1dffdcjsn5318b703922f',
-                  'x-rapidapi-host': 'spotify23.p.rapidapi.com'
-                }
-              };
+      try {
+          const response = await fetch(
+              'https://spotify23.p.rapidapi.com/playlist_tracks/?id=37i9dQZF1DX4Wsb4d7NKfP&offset=0&limit=100', options
+          );
 
-            try{
-                const response = await fetch(
-                   'https://spotify23.p.rapidapi.com/genre_view/?id=0JQ5DAqbMKFEC4WFtoNRpw&content_limit=10&limit=20', options
+          const data = await response.json();
+          console.log("API Response:", data.items[0].track.name);
 
-                  );
+         
+
+          const formattedSongs = data.items.map((item) => {
+            const track = item.track;
+
+            //getting the artist image first 
+            // const artist = track.images;
+            // console.log(artist)
+
+            // getting the name second
+
+  
+            return {
+              id: track.id, // Song ID
+              name: track.name, // Song name
+              previewUrl: track.preview_url, // Preview URL
+              image: track.album.images[0]?.url || "/default-image.svg", // Song image
+              artist: track.artists[0]?.name || "Unknown Artist", // First artist name
+              album: track.album.name, // Album name
+              addedAt: item.added_at, // Added date
+            };
+          });
+      
+
+          setSongs(formattedSongs); 
+          console.log("Formatted Songs:", formattedSongs);
+      } catch (error) {
+          console.error("Error fetching songs:", error);
+      }
+  };
+
+  fetchedAlbum();
+}, []);
 
 
-                  const data = await response.json();
-                  console.log("API Response:",data.content.items.flatMap);
-                  console.log("acessinng the data", data.content.items)
+   
 
 
-                 
-                  const formattedSongs = data.content.items.flatMap((item) => {
-
-        
-                    if (item.content && Array.isArray(item.content.items)){
-
-                        return item.content.items.map((playlist) => ({
-                            id: playlist.id,
-                            name: playlist.name,
-                            description: playlist.description || "No description available",
-                            image: playlist.images?.[0]?.url || "/default-image.svg", 
-                            totalTracks: playlist.tracks?.total || 0,
-                            playlistUrl: playlist.external_urls?.spotify || "#",
-
-                            // artistLists: playlist.content.items.map((item) => ({
-                            //     img: item.images?.[0]?.url || "/default-artist.svg",
-                            //     songTitle: item.name,
-                            //     artist: item.owner?.display_name || "Unknown Artist",
-                            //   })),
-                              
-
-                            }));
-                            
-                    }
-                    return [];
-                  });
-
-                  
-
-                  setSongs(formattedSongs);
-                  console.log(formattedSongs);
-                  
-            } catch (error) {
-                console.error("Error fetching songs:", error);
-            }
+    const handlePause = () => {
+        if (audioRef.current) {
+          audioRef.current.pause();
+          setIsPlaying(false);
         }
+      };
 
-        fetchedSongs();
-    }, [])
 
-   
+      const handlePlay = async () => {
+        if (audioRef.current) {
+          try {
+            await audioRef.current.play();
+            setIsPlaying(true);
+          } catch (error) {
+            console.log("Error playing audio", error);
+          }
+        }
+      };
+
+
+      const handlePlayAndPause = () => {
+        if (isPlaying) {
+          handlePause();
+        } else {
+          handlePlay();
+        }
+      };
+
+
+      useEffect(() => {
+        if (audioRef.current) {
+          audioRef.current.load(); 
+          if (isPlaying) {
+            audioRef.current.play().catch((error) => console.error("Error playing a new song:", error));
+          }
+        }
+      }, [currentSong]);
+    
+
 
 
 
 
     return (
-        <SpotifyContext.Provider value={{ songs}}>
+        <SpotifyContext.Provider value={{ 
+            songs,
+            currentSong,
+            isPlaying,
+            setCurrentSong,
+            handlePlayAndPause,
+            audioRef
+
+        }}>
             {children}
 
           

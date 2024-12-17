@@ -1,17 +1,20 @@
-import React from 'react'
-import  { Route, Router, Routes } from 'react-router-dom'
+// import React from 'react'
+import  { Route,  Routes } from 'react-router-dom'
 import GenreDetails from '../components/genreDetails'
-import Genre from '../components/genre'
+//import Genre from '../components/genre'
+import PlayMusicPage from '../components/playMusicPage'
+import HomePage from './HomePage'
 
 const GenreRoutes = () => {
   return (
     <div>
-       <Router>
             <Routes>
-                <Route path='/' element={<Genre />}/>
+                <Route path='/' element={<HomePage />}/>
+                <Route path='/artistpage/:id' element={<PlayMusicPage />}/>
                 <Route path='/genre/:id' element={<GenreDetails />}/>
+                <Route path='/playerPage/:id' element={<PlayMusicPage />}/>
+
             </Routes>
-       </Router>
       
     </div>
   )

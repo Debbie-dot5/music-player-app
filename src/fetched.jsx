@@ -1,12 +1,36 @@
-const options = {
-  method: 'GET',
-  headers: {
-    'x-rapidapi-key': '5d2c3d9542mshac7a9dfd7c6d9dap1dffdcjsn5318b703922f',
-    'x-rapidapi-host': 'spotify23.p.rapidapi.com'
-  }
-};
+// import { useEffect } from "react";
 
-fetch('https://spotify23.p.rapidapi.com/genre_view/?id=0JQ5DAqbMKFEC4WFtoNRpw&content_limit=10&limit=20', options)
-  .then(response => response.json())
-  .then(response => console.log(response))
-  .catch(err => console.error(err));
+// const Fetched = () => {
+//   const getMusic = async() => {
+//     const url = 'https://spotify23.p.rapidapi.com/album_tracks/?id=3IBcauSj5M2A6lTeffJzdv&offset=0&limit=300';
+// const options = {
+// 	method: 'GET',
+// 	headers: {
+// 		'x-rapidapi-key': '98f6c97830msh9c98c82fa2914e2p18e135jsn7806596509bf',
+// 		'x-rapidapi-host': 'spotify23.p.rapidapi.com'
+// 	}
+// };
+
+// try {
+// 	const response = await fetch(url, options);
+// 	const result = await response.json();
+// 	console.log(result);
+//   console.log(result.data.album.tracks.items);
+
+
+// } catch (error) {
+// 	console.error(error);
+// }
+//   }n
+// useEffect(() => {
+//  getMusic()
+// },[])
+
+
+
+//  return (
+//   <div>app</div>
+//  )
+// }
+
+// export default Fetched 
