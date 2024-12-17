@@ -35,7 +35,8 @@ useEffect(() => {
           );
 
           const data = await response.json();
-          console.log("API Response:", data.items[0].track.name);
+
+          console.log("API Response:", data.items);
 
          
 

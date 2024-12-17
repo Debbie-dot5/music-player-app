@@ -2,7 +2,7 @@
 // when text[recomendation] is hovered increase font size and add a line under the text on hover 
 
 import { SpotifyContext } from "../context/spotifyContext";
-import { Link, useParams } from "react-router-dom"
+import { Link } from "react-router-dom"
 import { useContext } from "react"
 
 
@@ -57,9 +57,9 @@ const MusicandAuthor = () => {
           <Link key={index}  to={`/artistpage/${musicList.id}`}>
           
             <div className="flex justify-between items-center ">
-                <div className="flex gap-6">
+                <div className="flex gap-6 ">
                    <img className="pb-4 w-[100px] " src={musicList.image}  alt={musicList.name}/>
-                    <div className="pt-2">
+                    <div className="pt-6">
                         <h2 className="text-lg font-semibold text-white">{musicList.name}</h2>
                         <p  className="text-sm text-gray-300">{musicList.artist}</p>
                    </div>
@@ -67,8 +67,8 @@ const MusicandAuthor = () => {
                 </div>
 
                 <button className="flex justify-center gap-1 cursor-pointer ">
-                <div className="h-[5px] w-[5px] bg-white rounded"></div>
-                <div className="h-[5px] w-[5px] bg-white rounded"></div>
+                <div className="h-[6px] w-[6px] bg-white rounded"></div>
+                <div className="h-[6px] w-[6px] bg-white rounded"></div>
               </button>
            </div>
           

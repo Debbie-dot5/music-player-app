@@ -24,7 +24,9 @@
   // }, [currentSong, isPlaying])
 
 
- 
+  ${currentSong?.id === song.id ? "bg-gray-300" : "bg-black"}
+
+
 //   useEffect(() => {
 
 //     const fetchedSongs = async () => {

@@ -71,7 +71,7 @@ const GenreDetails = () => {
                 <div  className="flex gap-6">
                       
                       <img
-                          className="pb-4 w-[100px] rounded-xl cursor-pointer"
+                          className="pb-4 w-[100px] cursor-pointer"
                           src={artistList.image}
                           alt={artistList.name}
                       />
@@ -88,7 +88,7 @@ const GenreDetails = () => {
 
                
 
-{/* shows your   skill and creativity as a developer */}
+
               <button className="flex justify-center gap-1 cursor-pointer ">
                 <div className="h-[5px] w-[5px] bg-white rounded"></div>
                 <div className="h-[5px] w-[5px] bg-white rounded"></div>
