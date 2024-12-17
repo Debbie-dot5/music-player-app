@@ -43,11 +43,7 @@ useEffect(() => {
           const formattedSongs = data.items.map((item) => {
             const track = item.track;
 
-            //getting the artist image first 
-            // const artist = track.images;
-            // console.log(artist)
-
-            // getting the name second
+           
 
   
             return {
